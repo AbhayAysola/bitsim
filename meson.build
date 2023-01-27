@@ -6,8 +6,11 @@ project('bitsim', 'cpp',
 raylibdep = dependency('raylib')
 
 raylibcpp = include_directories('raylib-cpp/include')
+include = include_directories('include')
 
-exe = executable('bitsim', 'bitsim.cpp',
-  install : true, dependencies : raylibdep, include_directories : raylibcpp)
+sources = files('src/init.cpp', 'src/bitsim.cpp')
+
+exe = executable('bitsim', sources,
+  install : true, dependencies : raylibdep, include_directories : [raylibcpp, include])
 
 test('basic', exe)
